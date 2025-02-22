@@ -4,7 +4,7 @@ import World from './world'
 
 onMounted(() => {
   const world = new World(document.querySelector('#canvas'))
-  world.render()
+  world.start()
 })
 
 
