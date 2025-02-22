@@ -16,11 +16,11 @@ class World {
     container.appendChild(renderer.domElement)
     
     const cube = createCube()
-    const {ambientLight, hemisphereLight, mainLight} = createLights()
+    const {mainLight} = createLights()
     loop = new Loop(camera, scene, renderer)
     // loop.updatables.push(cube)
 
-    scene.add(cube, hemisphereLight)
+    scene.add(cube, mainLight)
 
     resizer = new Resizer(container, camera, renderer)
 
