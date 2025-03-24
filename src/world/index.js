@@ -1,11 +1,12 @@
 import { createScene } from './components/scene'
 import { createCamera } from './components/camera'
-import { createCube } from './components/cube'
+import { createMeshGroup } from './components/meshGroup'
 import { createLights } from './components/light' 
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/Resizer'
 import { Loop } from './systems/Loop'
 import { createControls } from './systems/controls'
+import { useHelper } from './systems/helper'
 
 let scene, camera, renderer, resizer, loop  
 class World {
@@ -14,13 +15,14 @@ class World {
     camera = createCamera()
     renderer = createRenderer()
     container.appendChild(renderer.domElement)
+    useHelper(scene)
     
-    const cube = createCube()
+    const meshGroup = createMeshGroup()
     const {mainLight} = createLights()
     loop = new Loop(camera, scene, renderer)
-    // loop.updatables.push(cube)
+    loop.updatables.push(meshGroup)
 
-    scene.add(cube, mainLight)
+    scene.add(meshGroup, mainLight)
 
     resizer = new Resizer(container, camera, renderer)
 
